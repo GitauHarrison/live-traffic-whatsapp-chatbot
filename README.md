@@ -107,7 +107,7 @@ Check out on the lines beginning with "Forwarding". You will use the `https://` 
 
 ![Twilio Sandbox](app/static/images/twilio_sandbox.png)
 
-* In the box that says "WHEN A MESSAGE COMES IN", paste that `ngrok` URL. Remember to append `/bot` to your URL because this is the webhoot that Twilio needs to know.
+* In the box that says "WHEN A MESSAGE COMES IN", paste that `ngrok` URL. Remember to append `/bot` to your URL because this is the webhook that Twilio needs to know.
 
 * Click the _Save_ button
 
