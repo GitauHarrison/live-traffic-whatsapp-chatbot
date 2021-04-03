@@ -52,6 +52,24 @@ def create_map():
     return m._repr_html_()
 
 
+@app.route('/bot', methods=['POST'])
+def bot():
+    resp = MessagingResponse()
+    msg = resp.message()
+
+    if 'Latitude' in request.values.keys() and 'Longitude' in request.values.keys():
+        lat = request.values.get('Latitude')
+        lon = request.values.get('Longitude')
+
+        reply = create_reply(lat, lon)
+        url = f'{request.url_root}map?lat={lat}&lon={lon}'
+        msg.body(f'{reply}\n\nCheck out the interactive map here: \n\n{url}')
+    else:
+        msg.body('Hello! This is the Twilio Traffic Bot, Please share your location to get a live traffic update')
+
+    return str(msg)
+
+
 @app.route('/')
 @app.route('/home')
 def home():
