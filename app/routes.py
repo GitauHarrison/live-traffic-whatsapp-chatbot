@@ -37,6 +37,21 @@ def create_reply(lat, lon):
     return reply
 
 
+@app.route('/map')
+def create_map():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+
+    data = get_traffic_data(lat, lon)
+
+    points = [(i['latitude'], i['longitude']) for i in data['flowSegmentData']['coordinats']['coordinate']]
+
+    m = folium.Map(location=(lat, lon), zoom_start=15)
+    folium.PolyLine(points, color='orange', weight=10).add_to(m)
+
+    return m._repr_html_()
+
+
 @app.route('/')
 @app.route('/home')
 def home():
