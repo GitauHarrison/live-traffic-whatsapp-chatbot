@@ -6,7 +6,11 @@ import requests
 
 
 def get_traffic_data(lat, lon):
-    params = {'point': f'{lat},{lon}', 'unit': 'kph', 'thickness': 14, 'key': app.config['TOMTOM_API_KEY']}
+    params = {'points': f'{lat},{lon}',
+              'unit': 'kph',
+              'thickness': 14,
+              'key': app.config['TOMTOM_API_KEY']
+              },
     base_url = 'https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json'
     data = requests.get(base_url, params=params).json()
     return data
@@ -14,20 +18,22 @@ def get_traffic_data(lat, lon):
 
 def create_reply(lat, lon):
     data = get_traffic_data(lat, lon)
-
-    road_types = {'FRC0': 'Motorway', 'FRC1': 'Major road', 'FRC2': 'Other major road', 'FRC3': 'Secondary road',
-                  'FRC4': 'Local connecting road', 'FRC5': 'Local road of high importance', 'FRC6': 'Local road'}
-
-    if data['flowSegmentData']['roadClosure']:
+    road_types = {'FRC0': 'Motorway',
+                  'FRC1': 'Major road',
+                  'FRC2': 'Other major road',
+                  'FRC3': 'Secondary road',
+                  'FRC4': 'Local connecting road',
+                  'FRC5': 'Local road of high importance',
+                  'FRC6': 'Local road'
+                  }
+    if data['flowSegmentData']['roadCloser']:
         reply = 'Unfortunately this road is closed!'
-
     else:
         reply = (f"Your nearest road is classified as a _{road_types[data['flowSegmentData']['frc']]}_.  "
                  f"The current average speed is *{data['flowSegmentData']['currentSpeed']} kph* and "
                  f"would take *{data['flowSegmentData']['currentTravelTime']} seconds* to pass this section of road.  "
                  f"With no traffic, the speed would be *{data['flowSegmentData']['freeFlowSpeed']} kph* and would "
                  f"take *{data['flowSegmentData']['freeFlowTravelTime']} seconds*.")
-
     return reply
 
 
