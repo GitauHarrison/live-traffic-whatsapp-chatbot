@@ -6,7 +6,7 @@ import requests
 
 
 def get_traffic_data(lat, lon):
-    params = {'point': f'{lat},{lon}', 'unit': 'mph', 'thickness': 14, 'key': os.environ['TOMTOM_API_KEY']}
+    params = {'point': f'{lat},{lon}', 'unit': 'mph', 'thickness': 14, 'key': app.config['TOMTOM_API_KEY']}
     base_url = 'https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json'
     data = requests.get(base_url, params=params).json()
     return data
