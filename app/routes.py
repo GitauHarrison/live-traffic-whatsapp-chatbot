@@ -16,6 +16,27 @@ def get_traffic_data(lat, lon):
     return data
 
 
+def create_reply(lat, lon):
+    data = get_traffic_data(lat, lon)
+    road_types = {'FRC0': 'Motorway',
+                  'FRC1': 'Major road',
+                  'FRC2': 'Other major road',
+                  'FRC3': 'Secondary road',
+                  'FRC4': 'Local connecting road',
+                  'FRC5': 'Local road of high importance',
+                  'FRC6': 'Local road'
+                  }
+    if data['flowSegmentData']['roadCloser']:
+        reply = 'Unfortunately this road is closed!'
+    else:
+        reply = (f"Your nearest road is classified as a _{road_types[data['flowSegmentData']['frc']]}_.  "
+                 f"The current average speed is *{data['flowSegmentData']['currentSpeed']} kmph* and "
+                 f"would take *{data['flowSegmentData']['currentTravelTime']} seconds* to pass this section of road.  "
+                 f"With no traffic, the speed would be *{data['flowSegmentData']['freeFlowSpeed']} kmph* and would "
+                 f"take *{data['flowSegmentData']['freeFlowTravelTime']} seconds*.")
+    return reply
+
+
 @app.route('/')
 @app.route('/home')
 def home():
