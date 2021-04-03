@@ -6,7 +6,7 @@ import requests
 
 
 def get_traffic_data(lat, lon):
-    params = {'point': f'{lat},{lon}', 'unit': 'mph', 'thickness': 14, 'key': app.config['TOMTOM_API_KEY']}
+    params = {'point': f'{lat},{lon}', 'unit': 'kph', 'thickness': 14, 'key': app.config['TOMTOM_API_KEY']}
     base_url = 'https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json'
     data = requests.get(base_url, params=params).json()
     return data
@@ -23,9 +23,9 @@ def create_reply(lat, lon):
 
     else:
         reply = (f"Your nearest road is classified as a _{road_types[data['flowSegmentData']['frc']]}_.  "
-                 f"The current average speed is *{data['flowSegmentData']['currentSpeed']} mph* and "
+                 f"The current average speed is *{data['flowSegmentData']['currentSpeed']} kph* and "
                  f"would take *{data['flowSegmentData']['currentTravelTime']} seconds* to pass this section of road.  "
-                 f"With no traffic, the speed would be *{data['flowSegmentData']['freeFlowSpeed']} mph* and would "
+                 f"With no traffic, the speed would be *{data['flowSegmentData']['freeFlowSpeed']} kph* and would "
                  f"take *{data['flowSegmentData']['freeFlowTravelTime']} seconds*.")
 
     return reply
