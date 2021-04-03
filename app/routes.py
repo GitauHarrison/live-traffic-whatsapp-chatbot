@@ -26,7 +26,7 @@ def create_reply(lat, lon):
                   'FRC5': 'Local road of high importance',
                   'FRC6': 'Local road'
                   }
-    if data['flowSegmentData']['roadCloser']:
+    if data['flowSegmentData']['roadClosure']:
         reply = 'Unfortunately this road is closed!'
     else:
         reply = (f"Your nearest road is classified as a _{road_types[data['flowSegmentData']['frc']]}_.  "
