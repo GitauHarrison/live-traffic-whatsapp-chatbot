@@ -100,14 +100,14 @@ Alternatively, you can open another window in your terminal and run:
 (live_whatsapp_chatbot)$ ngrok http 5000
 ```
 
-Check out on the lines beggining with "Forwarding". You will use the `https://` URL to allow for access to your locally hosted application.
+Check out on the lines beginning with "Forwarding". You will use the `https://` URL to allow for access to your locally hosted application.
 
 * Go back to your Twilio account and click [Setting](https://www.twilio.com/console/sms/settings)
 * Finally, click on [WhatsApp Sandbox Setting](https://www.twilio.com/console/sms/whatsapp/sandbox)
 
 ![Twilio Sandbox](app/static/images/twilio_sandbox.png)
 
-* In the box that says "WHEN A MESSAGE COMES IN", paste that `ngrok` URL
+* In the box that says "WHEN A MESSAGE COMES IN", paste that `ngrok` URL. Remember to append `/bot` to your URL because this is the webhoot that Twilio needs to know.
 
 * Click the _Save_ button
 
