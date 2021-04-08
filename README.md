@@ -117,6 +117,6 @@ Alternatively, if you do not want to use the free `ngrok` URL, which keep changi
 
 ## Reference
 
-* If you are new to flask, I recommend that you begin from [here](https://gitauharrison-blog.herokuapp.com/personal-blog)
-* If you do not know what `virtualenvwrapper` is or you do not know how to use it, [check this guide](https://gitauharrison-blog.herokuapp.com/virtualenvwrapper)
-* It you would like to create your own live traffic chatbot, you can learn how to do it [here](https://github.com/GitauHarrison/notes/blob/master/live_traffic_whatsapp_chatbot.md)
+* If you are new to flask, I recommend that you begin from [here](https://github.com/GitauHarrison/notes/blob/master/web_development/personal_blog/personal_blog.md)
+* If you do not know what `virtualenvwrapper` is or you do not know how to use it, [check this guide](https://github.com/GitauHarrison/notes/blob/master/virtualenvwrapper_setup.md)
+* It you would like to create your own live traffic chatbot, you can learn how to do it [here](https://github.com/GitauHarrison/notes/blob/master/whatsapp_chatbots/live_traffic_whatsapp_chatbot.md)
